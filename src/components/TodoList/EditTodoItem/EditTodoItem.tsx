@@ -7,13 +7,11 @@ import { onChangeTodo } from '../../../features/todolist/todoListSlice'
 
 interface EditTodoItemProps {
 	todo: Todo
-	editTodoId: string
 	onEditTodo: (id: Todo['id'] | null) => void
 }
 
 export const EditTodoItem: FC<EditTodoItemProps> = ({
 	todo,
-	editTodoId,
 	onEditTodo
 }) => {
 	const [editTodo, setEditTodo] = useState<TodoContent>({
@@ -34,7 +32,7 @@ export const EditTodoItem: FC<EditTodoItemProps> = ({
 			return
 		}
 		onEditTodo(null)
-		dispatch(onChangeTodo({ id: editTodoId, ...editTodo }))
+		dispatch(onChangeTodo({ id: todo.id, ...editTodo }))
 		setError('')
 	}
 
