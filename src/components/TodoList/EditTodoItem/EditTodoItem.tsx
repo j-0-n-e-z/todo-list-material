@@ -1,6 +1,7 @@
-import { Save } from '@mui/icons-material'
-import { Button, ListItem, Paper, TextField } from '@mui/material'
-import { useState, type FC } from 'react'
+import { Box, Button, ListItem, Paper, TextField } from '@mui/material'
+import { type FC } from 'react'
+import type { SubmitHandler } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 import { useAppDispatch } from '../../../app/hooks'
 import { onChangeTodo } from '../../../features/todolist/todoListSlice'
@@ -11,26 +12,18 @@ interface EditTodoItemProps {
 }
 
 export const EditTodoItem: FC<EditTodoItemProps> = ({ todo, onEditTodo }) => {
-	const [editTodo, setEditTodo] = useState<TodoContent>({
-		description: todo.description,
-		name: todo.name
-	})
 	const dispatch = useAppDispatch()
-	const [error, setError] = useState('')
+	const {
+		register,
+		handleSubmit,
+		formState: { errors }
+	} = useForm<Todo>({
+		defaultValues: todo
+	})
 
-	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { value, name } = e.currentTarget
-		setEditTodo({ ...editTodo, [name]: value })
-	}
-
-	const onClick = () => {
-		if (!editTodo.name) {
-			setError('Name is required')
-			return
-		}
+	const onSubmit: SubmitHandler<Todo> = editTodo => {
 		onEditTodo(null)
-		dispatch(onChangeTodo({ id: todo.id, ...editTodo }))
-		setError('')
+		dispatch(onChangeTodo({ ...editTodo }))
 	}
 
 	return (
@@ -38,40 +31,41 @@ export const EditTodoItem: FC<EditTodoItemProps> = ({ todo, onEditTodo }) => {
 			<Paper
 				elevation={1}
 				sx={{
-					alignItems: 'center',
 					borderRadius: 2,
-					display: 'flex',
-					gap: 2,
-					justifyContent: 'space-between',
 					padding: '20px',
 					width: '100%'
 				}}
 			>
-				<TextField
-					required
-					error={!!error}
-					helperText={error || 'Enter a todo name'}
-					label='Name'
-					name='name'
-					sx={{ flex: 1 }}
-					value={editTodo.name}
-					onChange={onChange}
-				/>
-				<TextField
-					helperText='Enter a todo description'
-					label='Description'
-					name='description'
-					sx={{ flex: 2 }}
-					value={editTodo.description}
-					onChange={onChange}
-				/>
-				<Button
-					startIcon={<Save />}
-					variant='outlined'
-					onClick={onClick}
+				<form
+					onInvalid={e => e.preventDefault()}
+					onSubmit={handleSubmit(onSubmit)}
 				>
-					Save
-				</Button>
+					<Box
+						sx={{
+							alignItems: 'center',
+							display: 'flex',
+							gap: 2,
+							justifyContent: 'space-between'
+						}}
+					>
+						<TextField
+							{...register('name', { required: 'Name is required' })}
+							error={!!errors.name}
+							helperText={errors.name?.message || 'Enter a todo name'}
+							label='Name'
+							sx={{ flex: 1 }}
+						/>
+						<TextField
+							{...register('description')}
+							helperText='Enter a todo description'
+							label='Description'
+							sx={{ flex: 2 }}
+						/>
+						<Button type='submit' variant='outlined'>
+							Save
+						</Button>
+					</Box>
+				</form>
 			</Paper>
 		</ListItem>
 	)
