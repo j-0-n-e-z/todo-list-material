@@ -10,10 +10,7 @@ interface EditTodoItemProps {
 	onEditTodo: (id: Todo['id'] | null) => void
 }
 
-export const EditTodoItem: FC<EditTodoItemProps> = ({
-	todo,
-	onEditTodo
-}) => {
+export const EditTodoItem: FC<EditTodoItemProps> = ({ todo, onEditTodo }) => {
 	const [editTodo, setEditTodo] = useState<TodoContent>({
 		description: todo.description,
 		name: todo.name
@@ -44,6 +41,7 @@ export const EditTodoItem: FC<EditTodoItemProps> = ({
 					alignItems: 'center',
 					borderRadius: 2,
 					display: 'flex',
+					gap: 2,
 					justifyContent: 'space-between',
 					padding: '30px 25px 15px',
 					width: '100%'
@@ -55,6 +53,7 @@ export const EditTodoItem: FC<EditTodoItemProps> = ({
 					helperText={error || ' '}
 					label='Name'
 					name='name'
+					sx={{ flex: 1 }}
 					value={editTodo.name}
 					onChange={onChange}
 				/>
@@ -62,12 +61,13 @@ export const EditTodoItem: FC<EditTodoItemProps> = ({
 					helperText=' '
 					label='Description'
 					name='description'
+					sx={{ flex: 2 }}
 					value={editTodo.description}
 					onChange={onChange}
 				/>
 				<Button
 					startIcon={<Save />}
-					sx={{ transform: 'translateY(-25%)' }}
+					sx={{ transform: 'translateY(-30%)' }}
 					variant='outlined'
 					onClick={onClick}
 				>
