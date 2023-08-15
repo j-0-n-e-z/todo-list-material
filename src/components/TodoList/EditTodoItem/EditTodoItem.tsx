@@ -2,10 +2,8 @@ import { Save } from '@mui/icons-material'
 import { Button, ListItem, Paper, TextField } from '@mui/material'
 import { useState, type FC } from 'react'
 
-import type { Todo } from '../../../App'
 import { useAppDispatch } from '../../../app/hooks'
 import { onChangeTodo } from '../../../features/todolist/todoListSlice'
-import type { TodoContent } from '../../../types/types'
 
 interface EditTodoItemProps {
 	todo: Todo

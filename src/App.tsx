@@ -4,13 +4,6 @@ import { useState } from 'react'
 import { useAppSelector } from './app/hooks'
 import { Header, Panel, TodoList } from './components'
 
-export interface Todo {
-	id: string
-	description: string
-	done: boolean
-	name: string
-}
-
 const App = () => {
 	const [editTodoId, setEditTodoId] = useState<string | null>(null)
 	const todoList = useAppSelector(state => state.todoList.todos)

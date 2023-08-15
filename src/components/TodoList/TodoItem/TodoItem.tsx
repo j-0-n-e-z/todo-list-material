@@ -9,7 +9,6 @@ import {
 } from '@mui/material'
 import type { FC } from 'react'
 
-import type { Todo } from '../../../App'
 import { useAppDispatch } from '../../../app/hooks'
 import {
 	onDeleteTodo,

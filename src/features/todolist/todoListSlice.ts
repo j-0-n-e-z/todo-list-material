@@ -2,9 +2,6 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid'
 
-import type { Todo } from '../../App'
-import type { TodoContent } from '../../types/types'
-
 import { initialState } from './initialState'
 
 export interface TodoListState {

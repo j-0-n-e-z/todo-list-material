@@ -1,8 +1,6 @@
 import { Box, List } from '@mui/material'
 import type { FC } from 'react'
 
-import type { Todo } from '../../App'
-
 import { EditTodoItem } from './EditTodoItem/EditTodoItem'
 import { TodoItem } from './TodoItem/TodoItem'
 

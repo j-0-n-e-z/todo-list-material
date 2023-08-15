@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 
 import { useAppDispatch } from '../../app/hooks'
 import { onAddTodo } from '../../features/todolist/todoListSlice'
-import type { TodoContent } from '../../types/types'
 
 const DEFAULT_TODO: TodoContent = {
 	description: '',

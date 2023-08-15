@@ -1,8 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import type { FC } from 'react'
 
-import type { Todo } from '../../App'
-
 interface HeaderProps {
 	todoList: Todo[]
 }
