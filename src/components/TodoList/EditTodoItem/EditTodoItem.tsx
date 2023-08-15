@@ -43,14 +43,14 @@ export const EditTodoItem: FC<EditTodoItemProps> = ({ todo, onEditTodo }) => {
 					display: 'flex',
 					gap: 2,
 					justifyContent: 'space-between',
-					padding: '30px 25px 15px',
+					padding: '20px',
 					width: '100%'
 				}}
 			>
 				<TextField
 					required
 					error={!!error}
-					helperText={error || ' '}
+					helperText={error || 'Enter a todo name'}
 					label='Name'
 					name='name'
 					sx={{ flex: 1 }}
@@ -58,7 +58,7 @@ export const EditTodoItem: FC<EditTodoItemProps> = ({ todo, onEditTodo }) => {
 					onChange={onChange}
 				/>
 				<TextField
-					helperText=' '
+					helperText='Enter a todo description'
 					label='Description'
 					name='description'
 					sx={{ flex: 2 }}
@@ -67,7 +67,6 @@ export const EditTodoItem: FC<EditTodoItemProps> = ({ todo, onEditTodo }) => {
 				/>
 				<Button
 					startIcon={<Save />}
-					sx={{ transform: 'translateY(-30%)' }}
 					variant='outlined'
 					onClick={onClick}
 				>
