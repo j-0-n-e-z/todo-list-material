@@ -13,7 +13,7 @@ export const Header: FC<HeaderProps> = ({ todoList }) => {
 			<Typography
 				gutterBottom
 				component='h1'
-				sx={{ fontSize: 35, mb: 3 }}
+				sx={{ fontSize: 35, my: 4 }}
 				variant='h3'
 			>
 				Todo List ({doneCount}/{todoList.length})
