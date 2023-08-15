@@ -40,7 +40,7 @@ export const Panel = () => {
 				flexDirection: 'column',
 				gap: 2,
 				mb: 4,
-				padding: '30px 25px 15px',
+				padding: '20px',
 				width: '100%'
 			}}
 		>
@@ -48,7 +48,7 @@ export const Panel = () => {
 				<TextField
 					required
 					error={!!error}
-					helperText={error || ' '}
+					helperText={error || 'Enter a todo name'}
 					label='Name'
 					name='name'
 					sx={{ flex: 2 }}
@@ -57,7 +57,7 @@ export const Panel = () => {
 					onChange={onChange}
 				/>
 				<TextField
-					helperText=' '
+					helperText='Enter a todo description'
 					label='Description'
 					name='description'
 					sx={{ flex: 3 }}
@@ -67,9 +67,10 @@ export const Panel = () => {
 				/>
 			</Box>
 			<Button
+				color='success'
 				startIcon={<Add />}
-				sx={{ transform: 'translateY(-25%)' }}
-				variant='outlined'
+				sx={{ alignSelf: 'end', width: 'fit-content' }}
+				variant='contained'
 				onClick={onClick}
 			>
 				add todo
