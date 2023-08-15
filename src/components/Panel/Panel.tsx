@@ -16,7 +16,7 @@ export const Panel = () => {
 	const dispatch = useAppDispatch()
 
 	const onClick = () => {
-		if (!todo.name) {
+		if (!todo.name || todo.name.trim().length === 0) {
 			setError('Name is required')
 			return
 		}
