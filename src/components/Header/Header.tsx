@@ -1,12 +1,10 @@
 import { Box, Typography } from '@mui/material'
-import type { FC } from 'react'
 
-interface HeaderProps {
-	todoList: Todo[]
-}
+import { useAppSelector } from '@/redux'
 
-export const Header: FC<HeaderProps> = ({ todoList }) => {
-	const doneCount = todoList.filter(todo => todo.done).length
+export const Header = () => {
+	const todos = useAppSelector(state => state.todoList.todos)
+	const doneCount = todos.filter(todo => todo.done).length
 
 	return (
 		<Box>
@@ -16,7 +14,7 @@ export const Header: FC<HeaderProps> = ({ todoList }) => {
 				sx={{ fontSize: 35, my: 4 }}
 				variant='h3'
 			>
-				Todo List ({doneCount}/{todoList.length})
+				Todo List ({doneCount}/{todos.length})
 			</Typography>
 		</Box>
 	)
