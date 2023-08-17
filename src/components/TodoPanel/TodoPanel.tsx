@@ -14,7 +14,7 @@ interface AddTodoProps {
 
 interface EditTodoProps {
 	mode: 'edit'
-	onEditTodo: (id: Todo['id'] | null) => void
+	setTodoForEdit: (id: Todo['id'] | null) => void
 	todo: Todo
 }
 
@@ -42,7 +42,7 @@ export const TodoPanel: FC<TodoPanelProps> = props => {
 			reset()
 		} else if (isEdit) {
 			dispatch(onChangeTodo({ id: props.todo.id, ...data }))
-			props.onEditTodo(null)
+			props.setTodoForEdit(null)
 		}
 	}
 
@@ -79,7 +79,7 @@ export const TodoPanel: FC<TodoPanelProps> = props => {
 							<Button
 								color='error'
 								startIcon={<Cancel />}
-								onClick={() => props.onEditTodo(null)}
+								onClick={() => props.setTodoForEdit(null)}
 							>
 								cancel
 							</Button>

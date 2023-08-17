@@ -12,7 +12,7 @@ interface TodoListProps {
 export const TodoList: FC<TodoListProps> = ({ todoList }) => {
 	const [editTodoId, setEditTodoId] = useState<string | null>(null)
 
-	const onEditTodo = (id: Todo['id'] | null) => {
+	const setTodoForEdit = (id: Todo['id'] | null) => {
 		setEditTodoId(id)
 	}
 
@@ -24,11 +24,15 @@ export const TodoList: FC<TodoListProps> = ({ todoList }) => {
 						<TodoPanel
 							key={todo.id}
 							mode='edit'
+							setTodoForEdit={setTodoForEdit}
 							todo={todo}
-							onEditTodo={onEditTodo}
 						/>
 					) : (
-						<TodoItem key={todo.id} todo={todo} onEditTodo={onEditTodo} />
+						<TodoItem
+							key={todo.id}
+							setTodoForEdit={setTodoForEdit}
+							todo={todo}
+						/>
 					)
 				)}
 			</List>

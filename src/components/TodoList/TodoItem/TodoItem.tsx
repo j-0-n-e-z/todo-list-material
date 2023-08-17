@@ -17,10 +17,10 @@ import {
 
 interface TodoItemProps {
 	todo: Todo
-	onEditTodo: (id: Todo['id']) => void
+	setTodoForEdit: (id: Todo['id']) => void
 }
 
-export const TodoItem: FC<TodoItemProps> = ({ todo, onEditTodo }) => {
+export const TodoItem: FC<TodoItemProps> = ({ todo, setTodoForEdit }) => {
 	const dispatch = useAppDispatch()
 	const lineThroughIfChecked = todo.done ? 'line-through' : 'none'
 
@@ -73,7 +73,7 @@ export const TodoItem: FC<TodoItemProps> = ({ todo, onEditTodo }) => {
 					<IconButton
 						aria-label='edit'
 						color='warning'
-						onClick={() => onEditTodo(todo.id)}
+						onClick={() => setTodoForEdit(todo.id)}
 					>
 						<Edit />
 					</IconButton>
