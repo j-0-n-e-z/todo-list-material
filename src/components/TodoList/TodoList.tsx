@@ -1,7 +1,8 @@
 import { Box, List } from '@mui/material'
 import { useState, type FC } from 'react'
 
-import { EditTodoItem } from './EditTodoItem/EditTodoItem'
+import { TodoPanel } from '../TodoPanel/TodoPanel'
+
 import { TodoItem } from './TodoItem/TodoItem'
 
 interface TodoListProps {
@@ -20,8 +21,9 @@ export const TodoList: FC<TodoListProps> = ({ todoList }) => {
 			<List sx={{ padding: 0 }}>
 				{todoList.map(todo =>
 					todo.id === editTodoId ? (
-						<EditTodoItem
+						<TodoPanel
 							key={todo.id}
+							mode='edit'
 							todo={todo}
 							onEditTodo={onEditTodo}
 						/>

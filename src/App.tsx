@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 
 import { useAppSelector } from './app/hooks'
-import { Header, Panel, TodoList } from './components'
+import { Header, TodoList, TodoPanel } from './components'
 
 const App = () => {
 	const todoList = useAppSelector(state => state.todoList.todos)
@@ -9,7 +9,7 @@ const App = () => {
 	return (
 		<Box alignItems='center' display='flex' flexDirection='column' width='45%'>
 			<Header todoList={todoList} />
-			<Panel />
+			<TodoPanel mode='add' />
 			<TodoList todoList={todoList} />
 		</Box>
 	)
