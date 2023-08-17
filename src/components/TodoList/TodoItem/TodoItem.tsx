@@ -9,11 +9,7 @@ import {
 } from '@mui/material'
 import type { FC } from 'react'
 
-import { useAppDispatch } from '../../../app/hooks'
-import {
-	onDeleteTodo,
-	onDoneTodo
-} from '../../../features/todolist/todoListSlice'
+import { onDeleteTodo, onDoneTodo, useAppDispatch } from '@/redux'
 
 interface TodoItemProps {
 	todo: Todo

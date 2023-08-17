@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid'
 
 import type { TodoListState } from './todoListSlice'
 
-export const initialState = {
+export const initialState: TodoListState = {
 	todos: [
 		{
 			description: 'Lorem ipsum dolor sit.',
@@ -24,4 +24,4 @@ export const initialState = {
 			name: 'Lorem, ipsum'
 		}
 	]
-} as TodoListState
+}

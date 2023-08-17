@@ -1,16 +1,16 @@
 import { Box } from '@mui/material'
 
-import { useAppSelector } from './app/hooks'
-import { Header, TodoList, TodoPanel } from './components'
+import { Header, TodoList, TodoPanel } from '@/components'
+import { useAppSelector } from '@/redux'
 
 const App = () => {
-	const todoList = useAppSelector(state => state.todoList.todos)
+	const todos = useAppSelector(state => state.todoList.todos)
 
 	return (
 		<Box alignItems='center' display='flex' flexDirection='column' width='45%'>
-			<Header todoList={todoList} />
+			<Header />
 			<TodoPanel mode='add' />
-			<TodoList todoList={todoList} />
+			<TodoList todos={todos} />
 		</Box>
 	)
 }

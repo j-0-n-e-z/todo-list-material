@@ -5,8 +5,7 @@ import type { FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 
-import { useAppDispatch } from '../../app/hooks'
-import { onAddTodo, onChangeTodo } from '../../features/todolist/todoListSlice'
+import { onAddTodo, onChangeTodo, useAppDispatch } from '@/redux'
 
 interface AddTodoProps {
 	mode: 'add'

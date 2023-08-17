@@ -1,15 +1,13 @@
 import { Box, List } from '@mui/material'
 import { useState, type FC } from 'react'
 
-import { TodoPanel } from '../TodoPanel/TodoPanel'
-
-import { TodoItem } from './TodoItem/TodoItem'
+import { TodoPanel, TodoItem } from '@/components'
 
 interface TodoListProps {
-	todoList: Todo[]
+	todos: Todo[]
 }
 
-export const TodoList: FC<TodoListProps> = ({ todoList }) => {
+export const TodoList: FC<TodoListProps> = ({ todos }) => {
 	const [editTodoId, setEditTodoId] = useState<string | null>(null)
 
 	const setTodoForEdit = (id: Todo['id'] | null) => {
@@ -19,7 +17,7 @@ export const TodoList: FC<TodoListProps> = ({ todoList }) => {
 	return (
 		<Box width='100%'>
 			<List sx={{ padding: 0 }}>
-				{todoList.map(todo =>
+				{todos.map(todo =>
 					todo.id === editTodoId ? (
 						<TodoPanel
 							key={todo.id}
@@ -39,3 +37,5 @@ export const TodoList: FC<TodoListProps> = ({ todoList }) => {
 		</Box>
 	)
 }
+
+export * from './TodoItem/TodoItem'
