@@ -1,14 +1,31 @@
 import { Box, List } from '@mui/material'
-import { useState, type FC } from 'react'
+import { useEffect, useState } from 'react'
 
-import { TodoPanel, TodoItem } from '@/components'
+import { EditTodoItem, TodoItem } from '@/components'
+import {
+	fetchTodos,
+	getAllTodos,
+	getTodosError,
+	getTodosStatus,
+	useAppDispatch,
+	useAppSelector
+} from '@/redux'
 
-interface TodoListProps {
-	todos: Todo[]
-}
-
-export const TodoList: FC<TodoListProps> = ({ todos }) => {
+export const TodoList = () => {
 	const [editTodoId, setEditTodoId] = useState<string | null>(null)
+	const dispatch = useAppDispatch()
+
+	const todos = useAppSelector(getAllTodos)
+	const todosStatus = useAppSelector(getTodosStatus)
+	const todosError = useAppSelector(getTodosError)
+
+	useEffect(() => {
+		dispatch(fetchTodos())
+	}, [])
+
+	if (todosStatus === 'loading') return <div>Loading todos...</div>
+
+	if (todosError) return <div>Error: {todosError}</div>
 
 	const setTodoForEdit = (id: Todo['id'] | null) => {
 		setEditTodoId(id)
@@ -19,9 +36,8 @@ export const TodoList: FC<TodoListProps> = ({ todos }) => {
 			<List sx={{ padding: 0 }}>
 				{todos.map(todo =>
 					todo.id === editTodoId ? (
-						<TodoPanel
+						<EditTodoItem
 							key={todo.id}
-							mode='edit'
 							setTodoForEdit={setTodoForEdit}
 							todo={todo}
 						/>
@@ -38,4 +54,5 @@ export const TodoList: FC<TodoListProps> = ({ todos }) => {
 	)
 }
 
+export * from './EditTodoItem/EditTodoItem'
 export * from './TodoItem/TodoItem'

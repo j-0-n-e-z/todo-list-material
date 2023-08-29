@@ -1,9 +1,9 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid'
 
 import type { RootState } from '../common/store'
+import { fetchTodos } from '../thunks'
 
 export interface TodoListState {
 	todos: Todo[]
@@ -16,10 +16,6 @@ const initialState: TodoListState = {
 	status: 'idle',
 	todos: []
 }
-
-export const fetchTodos = createAsyncThunk('todolist', () =>
-	axios.get<TodoListState>('http://localhost:8081').then(res => res.data.todos)
-)
 
 export const todoListSlice = createSlice({
 	extraReducers: builder => {
