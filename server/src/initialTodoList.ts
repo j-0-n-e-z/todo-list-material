@@ -1,8 +1,6 @@
 import { v4 as uuid } from 'uuid'
 
-import type { TodoListState } from './todoListSlice'
-
-export const initialState: TodoListState = {
+export const initialTodoList = {
 	todos: [
 		{
 			description: 'Lorem ipsum dolor sit.',
@@ -18,10 +16,18 @@ export const initialState: TodoListState = {
 			name: 'Sample Text'
 		},
 		{
-			description: 'Lorem, ipsum dolor.',
+			description:
+				'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, quos?',
 			done: true,
 			id: uuid(),
 			name: 'Lorem, ipsum'
+		},
+		{
+			description:
+				'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, quos?',
+			done: true,
+			id: uuid(),
+			name: 'Watch Openheimer'
 		}
 	]
 }
