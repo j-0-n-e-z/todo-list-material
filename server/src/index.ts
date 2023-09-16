@@ -10,7 +10,7 @@ app.use(cors({ origin: 'http://localhost:5173' }))
 const port = process.env.PORT || 8081
 
 app.get('/', (req: Request, res: Response) => {
-	res.send(JSON.stringify(initialTodoList))
+	res.send(initialTodoList)
 })
 
 app.listen(port, () => {

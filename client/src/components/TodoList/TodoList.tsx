@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react'
 import { EditTodoItem, TodoItem } from '@/components'
 import {
 	fetchTodos,
-	getAllTodos,
-	getTodosError,
-	getTodosStatus,
+	getTodoList,
 	useAppDispatch,
 	useAppSelector
 } from '@/redux'
@@ -15,17 +13,15 @@ export const TodoList = () => {
 	const [editTodoId, setEditTodoId] = useState<string | null>(null)
 	const dispatch = useAppDispatch()
 
-	const todos = useAppSelector(getAllTodos)
-	const todosStatus = useAppSelector(getTodosStatus)
-	const todosError = useAppSelector(getTodosError)
+	const { todos, status, error} = useAppSelector(getTodoList)
 
 	useEffect(() => {
 		dispatch(fetchTodos())
 	}, [])
 
-	if (todosStatus === 'loading') return <div>Loading todos...</div>
+	if (status === 'loading') return <div>Loading todos...</div>
 
-	if (todosError) return <div>Error: {todosError}</div>
+	if (error) return <div>Error: {error}</div>
 
 	const setTodoForEdit = (id: Todo['id'] | null) => {
 		setEditTodoId(id)

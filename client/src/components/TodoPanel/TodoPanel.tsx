@@ -40,10 +40,10 @@ export const TodoPanel = () => {
 			>
 				<Stack spacing={1}>
 					<TextField
-						{...register('name', { required: 'Name is required' })}
+						{...register('name', { required: 'Task name is required' })}
 						error={!!errors.name}
-						helperText={errors.name?.message || 'Enter a todo name'}
-						label='Name'
+						helperText={errors.name?.message || 'Enter a task name'}
+						label='Task name'
 						variant='filled'
 					/>
 					<TextField
